@@ -21,7 +21,7 @@ module Warbler
 
       def before_configure
         config.jar_name = default_app_name
-        config.webxml.rails.env = ENV['RAILS_ENV'] || 'production'
+        # config.webxml.rails.env = ENV['RAILS_ENV'] || 'production'
 
         return unless Warbler.framework_detection
         return false unless task = Warbler.project_application.lookup("environment")
@@ -30,7 +30,7 @@ module Warbler
         return false unless defined?(::Rails)
 
         config.dirs << "tmp" if File.directory?("tmp")
-        config.webxml.booter = :rails
+        # config.webxml.booter = :rails
         unless (defined?(::Rails.vendor_rails?) && ::Rails.vendor_rails?) || File.directory?("vendor/rails")
           config.gems["rails"] = ::Rails::VERSION::STRING
         end
@@ -44,11 +44,11 @@ module Warbler
       def after_configure
         config.init_contents << "#{config.warbler_templates}/rails.erb"
         begin
-          rails_env = config.webxml.rails.env
+          # rails_env = config.webxml.rails.env
           unless IO.readlines("config/environments/#{rails_env}.rb").grep(/^\s*config\.threadsafe!/).empty? &&
                  IO.readlines("config/environment.rb").grep(/^\s*config\.threadsafe!/).empty?
-            config.webxml.jruby.min.runtimes = 1 unless Integer === config.webxml.jruby.min.runtimes
-            config.webxml.jruby.max.runtimes = 1 unless Integer === config.webxml.jruby.max.runtimes
+            # config.webxml.jruby.min.runtimes = 1 unless Integer === config.webxml.jruby.min.runtimes
+            # config.webxml.jruby.max.runtimes = 1 unless Integer === config.webxml.jruby.max.runtimes
           end
         rescue
         end

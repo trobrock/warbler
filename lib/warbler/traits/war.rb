@@ -18,7 +18,7 @@ module Warbler
       DEFAULT_GEM_PATH = '/WEB-INF/gems'
 
       def self.detect?
-        Traits::Rails.detect? || Traits::Merb.detect? || Traits::Rack.detect?
+        # Traits::Rails.detect? || Traits::Merb.detect? || Traits::Rack.detect?
       end
 
       def before_configure
